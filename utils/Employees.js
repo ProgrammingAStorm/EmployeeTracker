@@ -23,7 +23,7 @@ FROM employees AS employee
 JOIN roles ON employee.role_id = roles.id
 JOIN departments ON roles.department_id = departments.id
 JOIN employees AS manager ON employee.id = manager.id
-ORDER BY employee.id`
+ORDER BY employee.id`;
 
         return ( await db.execute(sql) )[0];
     }

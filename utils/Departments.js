@@ -4,6 +4,10 @@ module.exports = class Departments {
             return;
         }
 
-        return ( await db.execute('select * from departments;') )[0];
+        const sql = `
+SELECT id AS ID, name AS Name
+FROM departments`
+
+        return ( await db.execute(sql) )[0];
     }
 }

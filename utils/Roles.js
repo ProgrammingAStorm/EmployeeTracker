@@ -4,6 +4,12 @@ module.exports = class Roles {
             return;
         }
 
-        return ( await db.execute('select * from roles;') )[0];
+        const sql = `
+SELECT title AS Title, CONCAT('$', FORMAT(salary, 2)) AS Salary, name AS Department
+FROM roles
+
+JOIN departments ON roles.department_id = departments.id`;
+
+        return ( await db.execute(sql) )[0];
     }
 }
