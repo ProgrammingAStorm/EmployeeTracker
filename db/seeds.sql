@@ -36,39 +36,39 @@ VALUES
     ('Jason', 'Powell', 2, 1),      #6
 
     #Lead Engineers
-    ('Frank', 'Frankson', 4, 4),    #6
-    ('Jose', 'Clooney', 4, 5),      #7
-    ('Bill', 'Wilson', 4, 6),       #8
+    ('Frank', 'Frankson', 4, 4),    #7
+    ('Jose', 'Clooney', 4, 5),      #8
+    ('Bill', 'Wilson', 4, 6),       #9
 
     #Engineers
-    ('Lead', 'Engineer', 5, 6),     #9
-    ('Hugh', 'Mongo', 5, 6),       #10
-    ('Migh', 'Seequel', 6, 6),     #11
+    ('Lead', 'Engineer', 5, 6),    #10
+    ('Hugh', 'Mongo', 5, 6),       #11
+    ('Migh', 'Seequel', 6, 6),     #12
 
-    ('Bro', 'Handsom', 5, 7),      #12
-    ('Sonic', 'Hedgehog', 5, 7),   #13
-    ('Mario', 'Plumber', 6, 7),    #14
+    ('Bro', 'Handsom', 5, 7),      #13
+    ('Sonic', 'Hedgehog', 5, 7),   #14
+    ('Mario', 'Plumber', 6, 7),    #15
 
-    ('Bro', 'Chacho', 6, 8),       #15
-    ('Bro', 'Tato', 5, 8),         #16
-    ('Bro', 'Tastic', 5, 8),       #17
+    ('Bro', 'Chacho', 6, 8),       #16
+    ('Bro', 'Tato', 5, 8),         #17
+    ('Bro', 'Tastic', 5, 8),       #18
 
     #Sales Managers
-    ('Doctor', 'Schmit', 3, 2),    #18
-    ('Who', 'Areyou', 3, 2),       #19
+    ('Doctor', 'Schmit', 3, 2),    #19
+    ('Who', 'Areyou', 3, 2),       #20
 
     #Salesmen
-    ('Laem', 'Neesan', 7, 18),     #20
-    ('Tim', 'Henson', 7, 18),      #21
+    ('Laem', 'Neesan', 7, 19),     #21
+    ('Tim', 'Henson', 7, 19),      #22
 
-    ('Ricardo', 'Ricardo', 7, 19), #22
-    ('Scottie', 'LePage', 7, 19),  #23
+    ('Ricardo', 'Ricardo', 7, 20), #23
+    ('Scottie', 'LePage', 7, 20),  #24
 
 
     #Interns
-    ('Owane', 'Kjelburg', 8, 3),   #24
-    ('Under', 'There', 8, 3),      #25
-    ('Matthew', 'Patrick', 8, 3),  #26
-    ('Matt', 'Watson', 8, 3),      #27
-    ('Ryan', 'MaGee', 8, 3),       #28
-    ('Mark', 'Pavel', 8, 3);       #29
+    ('Owane', 'Kjelburg', 8, 3),   #25
+    ('Under', 'There', 8, 3),      #26
+    ('Matthew', 'Patrick', 8, 3),  #27
+    ('Matt', 'Watson', 8, 3),      #28
+    ('Ryan', 'MaGee', 8, 3),       #29
+    ('Mark', 'Pavel', 8, 3);       #30

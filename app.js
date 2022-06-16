@@ -10,4 +10,10 @@ createDb('root', 'Andrispower32!')
 })
 .then(async () => {
     console.table(await Business.getEmployees(db, true));
+})
+.then(async () => {
+    console.table(await Business.getDepartments(db, true));
+})
+.then(async () => {
+    console.table(await Business.getRoles(db, true));
 });
