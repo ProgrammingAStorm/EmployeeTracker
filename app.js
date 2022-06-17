@@ -4,6 +4,7 @@ const Business = require('./utils/Business');
 const createDb = require('./utils/connection');
 
 let db;
+
 createDb('root', 'Andrispower32!')
 .then(result => {
     db = result;
@@ -23,5 +24,18 @@ createDb('root', 'Andrispower32!')
         title: 'Title',
         salary: 1000000.00,
         dep: 1
+    }))*/
+})
+.then(async () => {
+    /*console.table(await Business.addEmployee(db, {
+        first: 'Cleo',
+        last: 'Patra',
+        role: 1,
+        manager: 1
+    }))*/
+})
+.then(async () => {
+    /*console.table(await Business.addDepartment(db, {
+        name: null
     }))*/
 });

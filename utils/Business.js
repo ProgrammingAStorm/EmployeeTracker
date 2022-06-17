@@ -45,13 +45,38 @@ module.exports = class Business {
         return ( await db.execute(sql) )[0];
     }
 
-    static async addRole(db, params) {
+    static async addEmployee(db, params) {
         const sql = `
-            INSERT INTO roles (title, salary, department_id)
-            VALUES (?, ?, ?)`
+            INSERT INTO employees (first_name, last_name, role_id, manager_id)
+            VALUES (?, ?, ?, ?)`
         ;
 
-        params = [ params.title, params.salary, params.dep ]
+        params = [ params.first, params.last, params.role, params.manager ];
+
+        try {
+            const response = ( await db.execute(sql, params) )[0];
+            return [
+                {
+                    'Affected Rows': response.affectedRows,
+                    'Insert Id': response.insertId
+                }
+            ];
+        } catch (error) {
+            return [
+                {
+                    'Error': `${error.sqlMessage.trim()}\n\n${error.sql.trim()}`
+                }
+            ];
+        }
+    }
+
+    static async addDepartment(db, params) {
+        const sql = `
+            INSERT INTO departments (name)
+            VALUES (?)`
+        ;
+
+        params = [ params.name ];
 
         try {
             const response = ( await db.execute(sql, params) )[0];
@@ -61,6 +86,31 @@ module.exports = class Business {
                     'Insert Id': response.insertId
                 }
             ]
+        } catch (error) {
+            return [
+                {
+                    'Error': `${error.sqlMessage.trim()}\n\n${error.sql.trim()}`
+                }
+            ];
+        }     
+    }
+
+    static async addRole(db, params) {
+        const sql = `
+            INSERT INTO roles (title, salary, department_id)
+            VALUES (?, ?, ?)`
+        ;
+
+        params = [ params.title, params.salary, params.dep ];
+
+        try {
+            const response = ( await db.execute(sql, params) )[0];
+            return [
+                {
+                    'Affected Rows': response.affectedRows,
+                    'Insert Id': response.insertId
+                }
+            ];
         } catch (error) {
             return [
                 {
