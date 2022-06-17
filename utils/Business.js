@@ -1,9 +1,5 @@
 module.exports = class Business {
-    static async getEmployees(db, params) {
-        if(!params) {
-            return ( await db.execute('select * from employees;') )[0];
-        }
-
+    static async getEmployees(db) {
         const sql = `
             SELECT
                 employee.id AS ID, CONCAT(employee.first_name, ' ', employee.last_name) AS Employee,
@@ -29,11 +25,7 @@ module.exports = class Business {
         return ( await db.execute(sql) )[0];
     }
 
-    static async getDepartments(db, params) {
-        if(!params) {
-            return;
-        }
-
+    static async getDepartments(db) {
         const sql = `
             SELECT id AS ID, name AS Name
             FROM departments
@@ -42,11 +34,7 @@ module.exports = class Business {
         return ( await db.execute(sql) )[0];
     }
 
-    static async getRoles(db, params) {
-        if(!params) {
-            return;
-        }
-
+    static async getRoles(db) {
         const sql = `
             SELECT title AS Title, CONCAT('$', FORMAT(salary, 2)) AS Salary, name AS Department
             FROM roles
@@ -55,5 +43,30 @@ module.exports = class Business {
         `;
 
         return ( await db.execute(sql) )[0];
+    }
+
+    static async addRole(db, params) {
+        const sql = `
+            INSERT INTO roles (title, salary, department_id)
+            VALUES (?, ?, ?)`
+        ;
+
+        params = [ params.title, params.salary, params.dep ]
+
+        try {
+            const response = ( await db.execute(sql, params) )[0];
+            return [
+                {
+                    'Affected Rows': response.affectedRows,
+                    'Insert Id': response.insertId
+                }
+            ]
+        } catch (error) {
+            return [
+                {
+                    'Error': `${error.sqlMessage.trim()}\n\n${error.sql.trim()}`
+                }
+            ];
+        }        
     }
 }

@@ -7,13 +7,21 @@ let db;
 createDb('root', 'Andrispower32!')
 .then(result => {
     db = result;
+    console.log('\n\n');
 })
 .then(async () => {
-    console.table(await Business.getEmployees(db, true));
+    console.table('Employees', await Business.getEmployees(db));
 })
 .then(async () => {
-    console.table(await Business.getDepartments(db, true));
+    console.table('Departments', await Business.getDepartments(db));
 })
 .then(async () => {
-    console.table(await Business.getRoles(db, true));
+    console.table('Roles', await Business.getRoles(db));
+})
+.then(async () => {
+    /*console.table(await Business.addRole(db, {
+        title: 'Title',
+        salary: 1000000.00,
+        dep: 1
+    }))*/
 });

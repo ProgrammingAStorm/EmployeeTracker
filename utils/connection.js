@@ -11,5 +11,4 @@ async function create(user, pass) {
     });
 }
 
-
 module.exports = create;
