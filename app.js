@@ -38,4 +38,10 @@ createDb('root', 'Andrispower32!')
     /*console.table(await Business.addDepartment(db, {
         name: null
     }))*/
+})
+.then(async () => {
+    /*console.table(await Business.updateEmployee(db, {
+        id: 7,
+        role: 1
+    }))*/
 });

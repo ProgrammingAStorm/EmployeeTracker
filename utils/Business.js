@@ -119,4 +119,30 @@ module.exports = class Business {
             ];
         }        
     }
+
+    static async updateEmployee(db, params) {
+        const sql = `
+            UPDATE employees 
+            SET role_id = ?
+            WHERE id = ?`
+        ;
+
+        params = [ params.role, params.id ];
+
+        try {
+            const response = ( await db.execute(sql, params) )[0];
+            return [
+                {
+                    'Affected Rows': response.affectedRows,
+                    'Insert Id': response.insertId
+                }
+            ];
+        } catch (error) {
+            return [
+                {
+                    'Error': `${error.sqlMessage.trim()}\n\n${error.sql.trim()}`
+                }
+            ];
+        }
+    }
 }
