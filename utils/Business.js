@@ -46,28 +46,56 @@ module.exports = class Business {
     }
 
     static async addEmployee(db, params) {
-        const sql = `
-            INSERT INTO employees (first_name, last_name, role_id, manager_id)
-            VALUES (?, ?, ?, ?)`
-        ;
+        const manager = params.manager        
+        params = [ params.first, params.last, params.role ];
 
-        params = [ params.first, params.last, params.role, params.manager ];
+        if(manager) {
+            params.push(manager);
 
-        try {
-            const response = ( await db.execute(sql, params) )[0];
-            return [
-                {
-                    'Affected Rows': response.affectedRows,
-                    'Insert Id': response.insertId
-                }
-            ];
-        } catch (error) {
-            return [
-                {
-                    'Error': `${error.sqlMessage.trim()}\n\n${error.sql.trim()}`
-                }
-            ];
+            const sql = `
+                INSERT INTO employees (first_name, last_name, role_id, manager_id)
+                VALUES (?, ?, ?, ?)`
+            ;
+
+            try {
+                const response = ( await db.execute(sql, params) )[0];
+                return [
+                    {
+                        'Affected Rows': response.affectedRows,
+                        'Insert Id': response.insertId
+                    }
+                ];
+            } catch (error) {
+                return [
+                    {
+                        'Error': `${error.sqlMessage.trim()}\n\n${error.sql.trim()}`
+                    }
+                ];
+            }
+        } else {
+            const sql = `
+                INSERT INTO employees (first_name, last_name, role_id)
+                VALUES (?, ?, ?)`
+            ;
+
+            try {
+                const response = ( await db.execute(sql, params) )[0];
+                return [
+                    {
+                        'Affected Rows': response.affectedRows,
+                        'Insert Id': response.insertId
+                    }
+                ];
+            } catch (error) {
+                return [
+                    {
+                        'Error': `${error.sqlMessage.trim()}\n\n${error.sql.trim()}`
+                    }
+                ];
+            }
         }
+
+
     }
 
     static async addDepartment(db, params) {
