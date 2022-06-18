@@ -1,3 +1,4 @@
+//This class holds all of the static functions that are required to query the database.
 module.exports = class Business {
     static async getEmployees(db) {
         const sql = `

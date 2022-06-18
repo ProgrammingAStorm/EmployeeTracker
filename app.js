@@ -14,6 +14,7 @@ createDb('root', 'Andrispower32!')
 .then(init);
 
 function init() {
+    //Promts the user to pick an action.
     inquirer.prompt([
         {
             type: 'list',
@@ -31,6 +32,7 @@ function init() {
             ]
         }
     ]).then(async answers => {
+        //Whatever action the picked is then executed.
         switch(answers.choice) {
             case('Show all employees.'):
                 console.table('Employees', await Business.getEmployees(db));
@@ -43,6 +45,8 @@ function init() {
             case('Show all roles.'):
                 console.table('Roles', await Business.getRoles(db));
             break;
+
+            //The next four actions all prompt the user for the data required for that specificy query, and then passes that data to the appropriate functon to query the database.
 
             case('Add an employee.'):
                 console.table(
