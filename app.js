@@ -11,33 +11,7 @@ createDb('root', 'Andrispower32!')
     db = result;
     console.log('\n\n');
 })
-.then(init)
-// .then(async () => {
-//     /*console.table(await Business.addRole(db, {
-//         title: 'Title',
-//         salary: 1000000.00,
-//         dep: 1
-//     }))*/
-// })
-// .then(async () => {
-//     /*console.table(await Business.addEmployee(db, {
-//         first: 'Cleo',
-//         last: 'Patra',
-//         role: 1,
-//         manager: 1
-//     }))*/
-// })
-// .then(async () => {
-//     /*console.table(await Business.addDepartment(db, {
-//         name: null
-//     }))*/
-// })
-// .then(async () => {
-//     /*console.table(await Business.updateEmployee(db, {
-//         id: 7,
-//         role: 1
-//     }))*/
-// });
+.then(init);
 
 function init() {
     inquirer.prompt([
@@ -51,7 +25,8 @@ function init() {
                 'Show all roles.',
                 'Add an employee.',                
                 'Add a department.',                
-                'Add a role.',                    
+                'Add a role.', 
+                "Update an employee's role.",                   
                 'Quit.'
             ]
         }
@@ -117,6 +92,105 @@ function init() {
                                 },
                             ]
                         )
+                    )
+                );
+            break;
+
+            case('Add a department.'):
+                console.table(
+                    await Business.addDepartment(
+                        db,
+
+                        await inquirer.prompt([
+                            {
+                                type: 'input',
+                                name: 'name',
+                                message: 'Please enter the name of the new department: ',
+                                validate: input => {
+                                    if(!input || typeof input !== 'string') {
+                                        return false;
+                                    }
+                                    return true;
+                                }
+                            }
+                        ])
+                    )
+                );
+            break;
+
+            case('Add a role.'):
+                console.table(
+                    await Business.addRole(
+                        db,
+
+                        await inquirer.prompt([
+                            {
+                                type: 'input',
+                                name: 'title',
+                                message: 'Please enter the title: ',
+                                validate: input => {
+                                    if(!input || typeof input !== 'string') {
+                                        return false;
+                                    }
+                                    return true;
+                                }
+                            },
+                            {
+                                type: 'number',
+                                name: 'salary',
+                                message: 'Please enter the salary: ',
+                                validate: input => {
+                                    if(!input || typeof input !== 'number') {
+                                        return false;
+                                    }
+                                    return true;
+                                }
+                            },
+                            {
+                                type: 'number',
+                                name: 'dep',
+                                message: 'Please enter the department ID: ',
+                                validate: input => {
+                                    if(!input || typeof input !== 'number') {
+                                        return false;
+                                    }
+                                    return true;
+                                }
+                            }, 
+                        ])
+                    )
+                );
+            break;
+
+            case("Update an employee's role."):
+                console.table(
+                    await Business.updateEmployee(
+                        db,
+
+                        await inquirer.prompt([
+                            {
+                                type: 'number',
+                                name: 'id',
+                                message: 'Please enter the id of the employee: ',
+                                validate: input => {
+                                    if(!input || typeof input !== 'number') {
+                                        return false;
+                                    }
+                                    return true;
+                                }
+                            }, 
+                            {
+                                type: 'number',
+                                name: 'role',
+                                message: 'Please enter the id of the new role: ',
+                                validate: input => {
+                                    if(!input || typeof input !== 'number') {
+                                        return false;
+                                    }
+                                    return true;
+                                }
+                            } 
+                        ])
                     )
                 );
             break;
